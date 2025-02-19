@@ -33,6 +33,9 @@ jobs:
           git add .
           git commit -m "chore: format code" || echo "No changes to commit"
 
+      - name: Pull latest changes
+        run: git pull --rebase
+
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
