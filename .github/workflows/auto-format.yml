@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}  # 确保检出到正确的分支
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -34,7 +36,7 @@ jobs:
           git commit -m "chore: format code" || echo "No changes to commit"
 
       - name: Pull latest changes
-        run: git pull --rebase
+        run: git pull --rebase origin ${{ github.head_ref }}
 
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
